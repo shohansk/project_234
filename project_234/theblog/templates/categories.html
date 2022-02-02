@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+      
+
+    <h1>  {{ cats }} : Categories</h1>
+    <hr>
+    <br>
+    
+        
+      {% if  category_post %}
+
+      {% for post in  category_post %}
+
+      <div class="cols-lg-4">
+                  
+          <div class="box-element product">
+             
+                  <h5 class="card-title">
+                      <a href="{% url 'article-detail' post.pk  %}">{{ post.title}}  </a> 
+                          | {{post.author}} - - {{post.post_date}}
+                        
+                  </h5>
+                  <p class="card-text flow-contral">
+                      {{ post.body | slice:":200" |safe}}</li>
+                      <br>
+                      {{post.category}}
+                  </p>
+                  
+                  <div class="d-flask">
+                      {% if user.is_authenticated %}
+                      <a href="{% url 'update_post' post.pk  %}" class="btn btn-primary">Go Edit</a>
+                      <a href="{% url 'delete_post' post.pk  %}"  class="btn btn-primary">Delete</a>
+                      {% endif %}
+                     
+                  </div>
+                 
+               
+          </div>
+     
+       </div>
+        
+      {% endfor %}
+      <br>
+      <a class="btn btn-secondary" href=" {% url 'home' %} ">Back </a>
+      {% else %}
+       <h1>what are you looking for does not exist yet !!!</h1>
+        
+      {% endif %}
+  
+    
+
+
+   
+    
+
+       
+       
+       
+
+{% endblock content %}

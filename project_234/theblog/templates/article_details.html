@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title %}
+    {{ post.title_tag}}
+{% endblock title %}
+{% block content %}
+
+
+
+<h1>{{ post.title}}</h1>
+<h2>{{user.id}}</h2>
+<h2>{{post.author.id}}</h2>
+<small> By {{ post.author}} 
+    - {{post.post_date}}</small>
+<hr>
+<br>
+{{post.body|safe}}
+<br>
+<br>
+<a class="btn btn-secondary" href=" {% url 'home' %} ">Back</a>
+
+<br>
+<hr>
+<br>
+<form action="{% url 'like_post' post.pk %}" method="POST" >
+    {% csrf_token %}
+    <button type="submit" name="post_id", value="{{ post.id }}" class="btn btn-primary btn-sm"  >Like</button>
+</form>
+
+<br>
+<h2>Comments</h2>
+<br>
+{% if not post.comments.all %}
+
+ <h3>No Comments Yet</h3>
+ <br>
+ <a href="{% url 'add_comment' post.pk %}">Add comment</a>
+ {% else %}
+ <a href="{% url 'add_comment' post.pk %}">Add comment</a>
+ <br>
+ <br>
+    {% for comment  in post.comments.all %}
+   
+           <strong> {{comment.name}} - {{comment.date_added}} </strong>
+            <br>
+            
+            {{comment.body}} 
+            <br>  
+            <br>
+            <br>  
+    {% endfor %}
+{% endif %}
+
+
+<div class="embed-responsive embed-responsive-16by9">
+    <iframe  class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/t4VnUEsG9Ac" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+  </div>
+
+  <!-- <div class="embed-responsive embed-responsive-4by3">
+    <iframe  class="embed-responsive-item"  src="https://www.youtube.com/embed/t4VnUEsG9Ac" title="YouTube video player" frameborder="5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
+  </div> -->
+{% endblock content %}

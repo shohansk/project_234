@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+      
+
+    <h1>Post</h1>
+    
+        
+        <div class="row "> 
+            {% for post in object_list %}
+
+           
+                <div class="cols-lg-4">
+                    
+                    <div class="box-element product">
+                       
+                            <h5 class="card-title">
+                                <a href="{% url 'article-detail' post.pk  %}">{{ post.title}}  </a> 
+                                    | {{post.author}} - - {{post.post_date}}
+                                  
+                            </h5>
+                            <p class="card-text flow-contral">
+                                {{ post.body | slice:":200" |safe}}</li>
+                                <br>
+                               <a href="{% url 'category' post.category|slugify %}">{{post.category}} </a> 
+                            </p>
+                            
+                            <div class="d-flask">
+                                {% if user.is_authenticated %}
+                                    {% if user.id == post.author.id %}
+                                        <a href="{% url 'update_post' post.pk  %}" class="btn btn-primary">Go Edit</a>
+                                        <a href="{% url 'delete_post' post.pk  %}"  class="btn btn-primary">Delete</a>
+                                    {% endif %}
+                                
+                                
+                                {% endif %}
+                            </div>
+                           
+                         
+                    </div>
+               
+                 </div>
+            
+           {% endfor %}
+        </div>
+      
+
+
+       
+       
+
+
+{% endblock content %}
+
+
+<!-- 
+
+      
+
+    <h1>Post</h1>
+    <ul>
+
+        <div class="col-lg-4">
+            <img class="thumbnail" src="{{product.imageURL}}">
+            <div class="box-element product">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                  </div>
+            </div>
+        </div>
+        {% for post in object_list %}
+
+        <li> <a href="{% url 'article-detail' post.pk  %}">{{ post.title}} - {{post.category}}</a> 
+            | {{post.author}} - - {{post.post_date}}
+             {% if user.is_authenticated %}
+
+                <small> <a href="{% url 'update_post' post.pk  %}">Edit</a>
+                <a href="{% url 'delete_post' post.pk  %}">Delete</a></small>
+                <br> 
+               
+             {% endif %}
+             <br>
+        {{ post.body | slice:":200" |safe}}</li>
+        {{post.category}}
+       
+{% endfor %}
+
+ -->
