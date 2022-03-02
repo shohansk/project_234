@@ -1,6 +1,9 @@
 
 from unicodedata import name
 from django.urls import path
+from django.conf import settings
+from django.conf.urls.static import static
+from project_234.settings import MEDIA_ROOT ,MEDIA_URL
 from .views import HomeView , ArticleDetailView ,AddPostView ,UpdatePostView ,DeletePostView,AddCategoryView ,CategoryView,LikeView,AddCommentView
 
 urlpatterns = [
@@ -16,3 +19,6 @@ urlpatterns = [
     path('like/<int:pk>',LikeView ,name = 'like_post'),
     path('article/<int:pk>/comment/',AddCommentView.as_view(), name = 'add_comment'),
 ]
+urlpatterns += static(MEDIA_URL, document_root=MEDIA_ROOT)
+
+urlpatterns += static(settings.STATIC_URL, document_root = settings.STATIC_ROOT)

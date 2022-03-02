@@ -1,54 +1,59 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
       
 
     <h1>Post</h1>
     
-        
+    <div class="container-fluid">  
         <div class="row "> 
             {% for post in object_list %}
 
-           
-                <div class="cols-lg-4">
-                    
-                    <div class="box-element product">
-                       
-                            <h5 class="card-title">
-                                <a href="{% url 'article-detail' post.pk  %}">{{ post.title}}  </a> 
-                                    | {{post.author}} - - {{post.post_date}}
-                                  
-                            </h5>
-                            <p class="card-text flow-contral">
-                                {{ post.body | slice:":200" |safe}}</li>
-                                <br>
-                               <a href="{% url 'category' post.category|slugify %}">{{post.category}} </a> 
-                            </p>
+            <div class="col mx-auto">
+                <div class="card mx-auto" style="width: 18rem;">
+                   <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="...">
+                   <div class="card-body">
+                     
+                   <h5 class="card-title">{{post.name}}</h5>
+                   <p class="card-text">
+                     {{post.snippet}}
+                      <br>
+                     <span class="price">
                             
-                            <div class="d-flask">
-                                {% if user.is_authenticated %}
-                                    {% if user.id == post.author.id %}
-                                        <a href="{% url 'update_post' post.pk  %}" class="btn btn-primary">Go Edit</a>
-                                        <a href="{% url 'delete_post' post.pk  %}"  class="btn btn-primary">Delete</a>
-                                    {% endif %}
-                                
-                                
-                                {% endif %}
-                            </div>
-                           
+                            &nbsp;
                          
-                    </div>
-               
-                 </div>
-            
-           {% endfor %}
+                            
+                     </span>
+                
+                   </p>
+                   
+                   </div>
+                   <div class="card-footer p-0">
+                      <div class="row no-gutters">
+ 
+                         <div class="col ">
+                            <a href="#" class="btn btn-light w-100">Enroll Now</a>
+                         </div>
+                         <div class="col ">
+                            <a href="{% url 'article-detail' post.pk  %}"{{ post.title}}   class="btn btn-primary col-12">Show More</a>
+                         </div>
+ 
+                      </div>
+ 
+                   </div>
+                </div>
+             </div>
+                
+
+            {% endfor %}
         </div>
+        
+    </div>
       
 
 
        
        
-
-
 {% endblock content %}
 
 
@@ -86,4 +91,98 @@
        
 {% endfor %}
 
+
+
+
+ 
+       
+ 
+     <h1>Post</h1>
+     
+     <div class="container-fluid">  
+         <div class="row "> 
+             {% for post in object_list %}
+ 
+ 
+ 
+             <div class="col mx-auto">
+                 <div class="card mx-auto" style="width: 18rem;">
+                     {% comment %} <a href="{% url 'article-detail' post.pk  %}">{{ post.title}}  </a> 
+                                     | {{post.author}} - - {{post.post_date}} {% endcomment %}
+ 
+                    <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      
+                    <h5 class="card-title">{{post.title}}</h5>
+                    <p class="card-text">
+                      
+                       <br>
+                      <span class="price">
+                            {% comment %} <del> {{post.price |taka}}</del> {% endcomment %}
+                             &nbsp;
+                            {% comment %} <li> {{ post.body | slice:":200" |safe}}</li> {% endcomment %}
+                             {% comment %} <span> {% cal_sellprice post.price post.discount as value  %} {{value | taka}}</span> {% endcomment %}
+                      </span>
+                 
+                    </p>
+                    
+                    </div>
+                    {% comment %} <div class="card-footer p-0">
+                       <div class="row no-gutters">
+  
+                          <div class="col ">
+                             <a href="/check-out/{{post.slug}}" class="btn btn-light w-100">Enroll Now</a>
+                          </div>
+                          <div class="col ">
+                             <a href="/course/{{post.slug}} "  class="btn btn-primary col-12">Show More</a>
+                          </div>
+  
+                       </div> {% endcomment %}
+                       
+                    </div>
+                 </div>
+              </div>
+                 
+ 
+            
+                 {% comment %} <div class="cols-lg-4">
+                     
+                     <div class="box-element product">
+                        
+                             <h5 class="card-title">
+                                 <a href="{% url 'article-detail' post.pk  %}">{{ post.title}}  </a> 
+                                     | {{post.author}} - - {{post.post_date}}
+                                   
+                             </h5>
+                             <p class="card-text flow-contral">
+                                 {{ post.body | slice:":200" |safe}}</li>
+                                 <br>
+                                <a href="{% url 'category' post.category|slugify %}">{{post.category}} </a> 
+                             </p>
+                             
+                             <div class="d-flask">
+                                 {% if user.is_authenticated %}
+                                     {% if user.id == post.author.id %}
+                                         <a href="{% url 'update_post' post.pk  %}" class="btn btn-primary">Go Edit</a>
+                                         <a href="{% url 'delete_post' post.pk  %}"  class="btn btn-primary">Delete</a>
+                                     {% endif %}
+                                 
+                                 
+                                 {% endif %}
+                             </div>
+                            
+                          
+                     </div>
+                
+                  </div> {% endcomment %}
+                 </div>
+                 </div>
+             </div>
+            {% endfor %}
+         </div>
+         
+     </div>
+       
+
  -->
+ 

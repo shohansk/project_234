@@ -26,6 +26,14 @@
     <button type="submit" name="post_id", value="{{ post.id }}" class="btn btn-primary btn-sm"  >Like</button>
 </form>
 
+{% if user.is_authenticated %}
+
+<small> <a href="{% url 'update_post' post.pk  %}">Edit</a>
+<a href="{% url 'delete_post' post.pk  %}">Delete</a></small>
+<br> 
+
+{% endif %}
+
 <br>
 <h2>Comments</h2>
 <br>
