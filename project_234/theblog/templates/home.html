@@ -6,10 +6,10 @@
     <h1>Post</h1>
     
     <div class="container-fluid">  
-        <div class="row "> 
+        <div class="row p-5"> 
             {% for post in object_list %}
 
-            <div class="col mx-auto">
+            <div class="col mx-auto mt-5">
                 <div class="card mx-auto" style="width: 18rem;">
                    <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="...">
                    <div class="card-body">

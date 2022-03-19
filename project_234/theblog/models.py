@@ -1,6 +1,7 @@
 
 
 
+from ast import mod
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -48,7 +49,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return '%s - %s' % (self.post.title ,self.name )
-    
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User,null=True,on_delete=models.CASCADE)
+    bio = models.TextField()
+
+    def __str__(self):
+        return str(self.user)
+
     
     
 
