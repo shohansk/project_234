@@ -4,52 +4,110 @@
       
 
     <h1>Post</h1>
-    
-    <div class="container-fluid">  
-        <div class="row p-5"> 
-            {% for post in object_list %}
-
-            <div class="col mx-auto mt-5">
-                <div class="card mx-auto" style="width: 18rem;">
-                   <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="...">
-                   <div class="card-body">
-                     
-                   <h5 class="card-title">{{post.name}}</h5>
-                   <p class="card-text">
-                     {{post.snippet}}
-                      <br>
-                     <span class="price">
-                            
-                            &nbsp;
-                         
-                            
-                     </span>
-                
-                   </p>
-                   
-                   </div>
-                   <div class="card-footer p-0">
-                      <div class="row no-gutters">
- 
-                         <div class="col ">
-                            <a href="#" class="btn btn-light w-100">Enroll Now</a>
-                         </div>
-                         <div class="col ">
-                            <a href="{% url 'article-detail' post.pk  %}"{{ post.title}}   class="btn btn-primary col-12">Show More</a>
-                         </div>
- 
-                      </div>
- 
-                   </div>
-                </div>
-             </div>
-                
-
-            {% endfor %}
-        </div>
+    <div class="row">
         
+    <div class="container-fluid">
+        
+        <div class="row">
+          <div class="col-10">
+
+            <div class="container-fluid">  
+                <div class="row p-5"> 
+                    {% for post in object_list %}
+        
+                    <div class="col mx-auto mt-5">
+                        <div class="card mx-auto" style="width: 18rem;">
+                           <img src="{{ post.thumbnail.url }}" class="card-img-top" alt="...">
+                           <div class="card-body">
+                             
+                           <h5 class="card-title">{{post.name}}</h5>
+                           <p class="card-text">
+                             {{post.snippet}}
+                              <br>
+                             <span class="price">
+                                    
+                                    &nbsp;
+                                 
+                                    
+                             </span>
+                        
+                           </p>
+                           
+                           </div>
+                           <div class="card-footer p-0">
+                              <div class="row no-gutters">
+         
+                                 <div class="col ">
+                                    <a href="#" class="btn btn-light w-100">Enroll Now</a>
+                                 </div>
+                                 <div class="col ">
+                                    <a href="{% url 'article-detail' post.pk  %}"{{ post.title}}   class="btn btn-primary col-12">Show More</a>
+                                 </div>
+         
+                              </div>
+         
+                           </div>
+                        </div>
+                     </div>
+                        
+        
+                    {% endfor %}
+                </div>
+                
+            </div>
+             {% comment %} this part for profile pic and blog {% endcomment %}
+
+          </div>
+          <div class="col-2">
+
+            <div class="card" style="width: 18rem;">
+                <img src ="{{user.profile.profile_pic.url }}" width=200px height=200px class="rounded-circle" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    
+                    {{user.profile}} 
+                  </h5>
+                  <p class="card-text">{{user.profile.bio}}</p>
+                </div>
+                <ul class=" ">
+                    <p class ="small text-muted">
+                        {% if user.profile.website_link %}
+                        <a href="{{user.profile.website_link }}">   Website | </a>
+                        {% endif %}
+
+                        {% if user.profile.facebook_link %}
+                        <a href="{{user.profile.facebook_link }}">   Facebook | </a>
+                        {% endif %}
+                      
+                       {% if user.profile.twitter_link %}
+                       <a href="{{user.profile.twitter_link }}">  Twitter |   </a>
+                       {% endif %}
+
+                       {% if  user.profile.youtube_link%}
+                       <a href="{{user.profile.youtube_link}}">    Youtube | </a>
+                       {% endif %}
+                      
+                       {% if  user.profile.instagram_link %}
+                       <a href="{{user.profile.instagram_link }}">   Instagram | </a>
+                       {% endif %}
+                      
+                       {% if user.profile.reddit_link  %}
+                        
+                      <a href="{{user.profile.reddit_link }}">   Reddit </a>
+                       {% endif %}
+                    </p>
+                </ul>
+                <div class="card-body">
+                  <a href="#" class="card-link">Card link</a>
+                  <a href="#" class="card-link">Another link</a>
+                </div>
+              </div>
+              
+          </div>
+        </div>
+      </div>
     </div>
-      
+
 
 
        

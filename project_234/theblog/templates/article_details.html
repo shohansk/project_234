@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}
     {{ post.title_tag}}
 {% endblock title %}
@@ -34,6 +35,8 @@
 
 {% endif %}
 
+<h2>{{post.profile.bio}}</h2>
+<img src ="{{post.author.profile.profile_pic.url }}">
 <br>
 <h2>Comments</h2>
 <br>
@@ -66,4 +69,8 @@
   <!-- <div class="embed-responsive embed-responsive-4by3">
     <iframe  class="embed-responsive-item"  src="https://www.youtube.com/embed/t4VnUEsG9Ac" title="YouTube video player" frameborder="5" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>  
   </div> -->
+
+
+  <img src ="{{user.profile.profile_pic.url }}" width=200px height=200px class="rounded-circle">
+
 {% endblock content %}
